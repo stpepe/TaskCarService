@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AutoService</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <%= render partial: "layouts/nav"%>
+    <div class="container">
+      <% flash.each do |k, v|%>
+        <%= tag.div v, class: "alert alert-#{k} mt-3", role: "alert"%>
+      <%end%>
+      <%= yield %>
+    </div>
+  </body>
+</html>

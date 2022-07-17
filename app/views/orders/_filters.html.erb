@@ -1,0 +1,52 @@
+
+    <article class="card mb-3"> 
+        <%= form_with url: sort_orders_path do |f|%>
+            <section class="card-header">
+                <div class="row text-center">
+                    <h2>Фильтры</h2>
+                </div>
+                <div class="row text-center">
+                    <div class="col">Услуги</div>
+                    <div class="col">Категории услуг</div>
+                    <div class="col">Исполнители</div>
+                    <div class="col">Дата</div>
+                </div>
+            </section>
+            <section class="card-body">
+                <div class="row text-center">
+                    <div class="col"> 
+                        <%= select("service", "service_ids", services.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :multiple => true, :size => 3 }) %>
+                    </div>
+                    <div class="col">
+                        <%= select("category", "category_ids", categories.all.collect {|p| [ p.name, p.id ] }, { include_blank: false }, { :multiple => true, :size => 3 }) %>
+                    </div>
+                    <div class="col">
+                        <%= select("executor", "executor_ids", executors.all.collect {|p| [ p.second_name, p.id ] }, { include_blank: false }, { :multiple => true, :size => 3 }) %>
+                    </div>
+                    <div class="col">
+                        <input type="date" name="created_at" id="created_at">
+                    </div>
+                </div>
+                <hr>
+                <div class="row text-center mt-3">
+                    <div class="col-sm-2 my-4">
+                        Сортировка:
+                    </div>
+                    <div class="col-sm-2">
+                        Цена <%= f.select :cost_sort, [["Нет", nil], ['По убыванию', "desc"], ['По возрастанию', "asc"]], size:3 %>
+                    </div>
+                    <div class="col-sm-2">
+                        Дата <%= f.select :date_sort, [["Нет", nil], ['По убыванию', "desc"], ['По возрастанию', "asc"]], size:3 %>
+                    </div>
+                </div>
+            </section>
+            <section class="card-footer">
+                
+                    <%= button_to "Применить", sort_orders_path, class: "btn btn-primary" %>
+                    <%= link_to "Экспортировать заказы в excel", sort_orders_path(format: :xlsx), class: "btn btn-primary" %>
+                    <%= $filter_orders %>
+                       
+            </section>
+        <% end %>
+    </article>
+  

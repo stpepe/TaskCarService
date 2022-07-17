@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-6 col-sm-2 text-left">
+        <h2>Услуга</h2>  
+    </div>
+    <div class="col-6 col-sm-2 text-left">
+        <h2>Цена</h2>  
+    </div>
+    <div class="col-6 col-sm-2 text-left">
+        <h2>Категория</h2>  
+    </div>
+</div>
+<% @services.each do |service|%>
+    <hr>
+    <div class="row">
+        <div class="col-6 col-sm-2 text-left">
+            <%= service.name %>
+        </div>
+        <div class="col-6 col-sm-2 text-left">
+            <%= service.cost %>
+        </div>          
+        <div class="col-6 col-sm-2 text-left">
+            <%= service.category.name %>
+        </div>
+        <div class="col-6">
+        <%= link_to "Редактировать", edit_service_path(service.id), class: "btn btn-secondary" %>
+        <%= link_to "Удалить", service_path(service), data: {turbo_method: :delete, turbo_confirm: "Вы уверены?"}, class: "btn btn-danger" %>
+        </div>
+    </div>
+<% end %>
+<hr>
+<div>
+    <%= link_to "Добавить услугу", new_service_path, class: "btn btn-primary" %>
+</div>

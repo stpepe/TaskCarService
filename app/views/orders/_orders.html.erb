@@ -1,0 +1,60 @@
+
+<% orders.each do |order|%>
+    <%=turbo_frame_tag order.id do%>
+        <article class="card mb-3 mt-3">
+            <section class="card-header">
+                <div class="row">
+                    <div class="col-6 col-sm text-center">
+                        Номер заказа 
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        Услуги 
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        Исполнитель  
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        Денежная сумма
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        Дата создания  
+                    </div>
+                </div>
+            </section>
+            <section class="card-body">
+                <div class="row ">
+                    <div class="col-6 col-sm text-center">
+                        <%= order.id %>
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        <% order.services.each do |s| %>
+                            (<%= s.name %>)
+                        <% end %>
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        <%= order.executor.name %>
+                        <%= order.executor.second_name %>
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        <%= order.cost%>
+                    </div>
+                    <div class="col-6 col-sm text-center">
+                        <time datetime="<%= order.format_created_at %>">
+                            <%= order.format_created_at %>
+                        </time>
+                    </div>
+                </div>
+            </section> 
+            <section class="card-footer">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <%= link_to "Редактировать", edit_order_path(order.id), class: "btn btn-secondary", data: {turbo_frame: order.id}%>
+                    </div>    
+                    <div class="col-sm-2 mx-5">
+                        <%= button_to "Удалить", destroy_order_path(order.id), class: "btn btn-danger", data: {turbo_frame: order.id, turbo_method: :destroy}%>
+                    </div>
+                </div>
+            </section>
+        </article>
+    <% end %>
+<% end %> 

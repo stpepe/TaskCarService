@@ -1,0 +1,8 @@
+<h1>Изменение заказа</h1>
+<%= turbo_frame_tag @order.id do%>
+    <article class="card mb-3">
+        <section class="card-body">
+            <%= render "form", url: edit_order_path(@order.id)%>
+        </section>    
+    </article>    
+<% end %>    

@@ -1,0 +1,10 @@
+<%= render "filters", services: @services, executors: @executors, categories: @categories%>   
+
+<div class="text-center"><h1>Заказы</h1></div>
+<%= turbo_frame_tag "filter_orders" do%>
+    <%= render "orders", orders: @orders %>
+<% end %>
+
+<div class="mb-3">
+    <%= link_to "Добавить заказ", new_order_path, class: "btn btn-primary" %>
+</div>

@@ -1,0 +1,18 @@
+<%= form_with model: @order, url: url do |order|%>
+    <div class="row">  
+        <div class="mb-3 row mt-3">
+            <%= order.label :name, 'Выбор услуг', class: 'col-sm-2 col-form-label' %>
+            <div class="col-sm-10">
+                <%= order.collection_select :service_ids, @services, :id, :name, {}, multiple: true, size: 3 %>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-3 row mt-3">
+        <%= order.label :name, 'Выбор Исполнителя', class: 'col-sm-2 col-form-label' %>
+        <div class="col-sm-10">
+            <%= order.collection_select :executor_id, @executors, :id, :second_name, {}, size: 3 %>
+        </div>
+    </div>
+    <%= order.submit "Добавить", class: 'btn btn-primary'%>
+<% end %>

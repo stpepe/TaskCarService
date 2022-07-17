@@ -1,0 +1,17 @@
+# app/views/users/index.xlsx.axlsx
+
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Orders") do |sheet|
+  sheet.add_row ["Номер заказа", "Исполнитель", "Услуги", "Категории услуг", "Денежная сумма", "Дата создания"]
+  
+  # each user is a row on your spreadsheet
+  for i in 0..orders.length
+      sheet.add_row [orders[i].class, orders[i], orders[i]] 
+      # Ничего не понимаю и у меня сильно горит
+      # Он не хочет выдавать мне orders[i].id, так как говорит, что у него
+      # класс nil. Но при этом, как видно выше, я запрашиваю показать мне 
+      # какой класс у orders[i] и он пишет - Order 
+      # =))))
+  end
+end

@@ -1,0 +1,21 @@
+<%= form_with model: @service do |service|%>
+    <div class="mb-3 row mt-3">
+        <%= service.label :name, 'Название', class: 'col-sm-2 col-form-label' %>
+        <div class="col-sm-10">
+            <%= service.text_field :name, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="mb-3 row mt-3">
+        <%= service.label :cost, 'Цена', class: 'col-sm-2 col-form-label' %>
+        <div class="col-sm-10">
+            <%= service.text_field :cost, class: 'form-control' %>
+        </div>
+    </div>
+    <div class="mb-3 row mt-3">
+        <%= service.label :category, 'Выбор категории', class: 'col-sm-2 col-form-label' %>
+        <div class="col-sm-10">
+            <%= service.collection_select :category_id, @categories, :id, :name, {}, { :size => 3 } %>
+        </div>
+    </div>
+    <%= service.submit "Отправить", class: 'btn btn-primary'%>
+<% end %>

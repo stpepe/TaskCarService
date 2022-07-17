@@ -1,0 +1,20 @@
+<div class="row">
+    <h2>Исполнители</h2>  
+</div>
+<% @executors.each do |executor|%>
+    <hr>
+    <div class="row">
+        <div class="col-6 col-sm-2">
+            <%= executor.name %>
+            <%= executor.second_name %>
+        </div>
+        <div class="col-6">
+        <%= link_to "Редактировать", edit_executor_path(executor.id), class: "btn btn-secondary" %>
+        <%= link_to "Удалить", executor_path(executor), data: {turbo_method: :delete, turbo_confirm: "Вы уверены?"}, class: "btn btn-danger" %>
+        </div>
+    </div>
+<% end %>
+<hr>
+<div>
+    <%= link_to "Добавить исполнителя", new_executor_path, class: "btn btn-primary" %>
+</div>

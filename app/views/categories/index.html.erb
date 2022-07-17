@@ -1,0 +1,19 @@
+<div class="row">
+    <h2>Категории</h2>  
+</div>
+<% @categories.each do |category|%>
+    <hr>
+    <div class="row">
+        <div class="col-6 col-sm-2">
+            <%= category.name %>
+        </div>
+        <div class="col-6">
+        <%= link_to "Редактировать", edit_category_path(category.id), class: "btn btn-secondary" %>
+        <%= link_to "Удалить", category_path(category), data: {turbo_method: :delete, turbo_confirm: "Вы уверены?"}, class: "btn btn-danger" %>
+        </div>
+    </div>
+<% end %>
+<hr>
+<div>
+    <%= link_to "Добавить категорию", new_category_path, class: "btn btn-primary" %>
+</div>
